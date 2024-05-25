@@ -1,0 +1,505 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 18, 2024, 1:50:50 PM
+    Author     : lengo
+*/
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+/*    width: 100vw;
+    height: 100vh;*/
+    /*overflow-x: hidden;*/
+}
+a:hover{
+    cursor: pointer;
+}
+.container{
+    width: 1104px;
+    margin: 0 auto;
+    /*background: #fff;*/
+    overflow: hidden;
+
+}
+/*======================================================================================================*/
+#log-in-modal, #sign-up-modal{
+    position: fixed; 
+    background: #d4af37; 
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 38, 57);
+    z-index: 5; 
+    box-shadow: 0 3px 9px #000;   
+    padding: 20px 40px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 18px;
+    border: 1px solid rgb(32, 38, 57);
+}
+#log-in-modal .log-in-title, #sign-up-modal .sign-up-title{
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 2.0;
+    text-align: center;
+    color: #18206f
+}
+#log-in-modal th, #sign-up-modal th{
+    font-weight: 700;
+    color: #18206f;
+    text-transform: capitalize;
+    text-align: left;
+    font-size: 16px;
+}
+#log-in-modal td, #sign-up-modal td{
+    padding: 12px 8px;
+    color: #18206f;
+}
+#log-in-modal .log-in-btn, #sign-up-modal .sign-up-btn{
+    cursor: pointer;
+    font-weight: 700;
+    color: #18206f;
+}
+#log-in-modal input,#sign-up-modal input{
+    padding: 8px;
+    color: #18206f;
+    font-weight: 700;
+    border-radius: 8px;
+}
+.x-btn{
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    padding: 16px; 
+    background-color: #18206f; 
+    color: #d4af37; 
+    font-size: 2.0rem; 
+    border-top-right-radius: 18px; 
+    border-bottom-left-radius: 18px; 
+}
+.x-btn:hover{
+    cursor: pointer;
+}
+#blur{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    opacity: 0.4;
+    overflow: hidden;
+    z-index: 4;
+}
+.visibility{
+    display: flex !important;
+}
+.hidden{
+    display: none !important;
+}
+
+
+/*========================================================================================================*/
+.header {
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+    position: sticky;
+    top: 0;
+    /*width: 100%;*/
+    z-index: 3;
+
+}
+.header .container{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 64px;
+    text-transform: capitalize;
+}
+.header-left-block, .header-center-block, .header-right-block{
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 100%;
+}
+.header-left-block{
+    width: 50%;
+    gap: 16px;
+}
+.header-center-block{
+    gap: 24px;
+}
+.header .logo{
+    width: 120px;
+    height: 48px;
+    border-radius: 8px;
+    
+}
+.header .logo:hover{
+    cursor: pointer;
+}
+.header .sign{
+    font-size: 24px;
+}
+.header .bars-btn{
+}
+.header .bars-btn:hover{
+    cursor: pointer;
+}
+.header .search{
+    width: 100%;
+}
+.header .search-bar{
+    width: 100%;
+    font-size: 16px;
+    padding: 6px;
+    border: 1px solid #000;
+    border-radius: 4px
+}
+.header .search-btn{
+    font-size: 22px;
+    background-color: #990033;
+    padding: 4.1px;
+    border: 1px solid #000;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.header .item{
+    font-weight: 700;
+    color: #023047;
+    padding: 22px 0;
+    border-bottom: 4px solid transparent;
+}
+.header .item:hover{
+    color: #d4af37;
+    border-color: #d4af37; 
+}
+
+
+.header .action{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+.header .btn{
+    font-weight: 700;
+    padding: 8px 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    margin: 0 12px;
+}
+.header .btn:hover{
+    color: #d4af37;
+}
+.header .sign:hover{
+    cursor: pointer;
+}
+.header .login{
+    background: #044389;
+    color: #DD3333;
+}
+.header .signup{
+    background: #990033;
+    color: #023047;
+}
+.header .client{
+    background: #990033;
+    color: #023047;
+}
+.slider{
+
+}
+.slider .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #006699;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.slider img{
+    width: 100%;
+    height: 436px;;
+    object-position: center;
+    object-fit: cover;
+}
+.slider .nav-img-btn{
+    font-size: 16px;
+    padding: 4px;
+    margin: 8px;
+    color: #023047;
+}
+.slider .nav-img-btn:hover{
+    cursor: pointer;
+}
+.vouchers{
+    
+}
+.vouchers .title{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: capitalize;
+    margin-bottom: 12px; 
+}
+.vouchers .container{
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0;
+    
+}
+.voucher-list{
+    display: flex;
+    justify-content: space-around;
+}
+.voucher-item{
+    width: 25%;
+    display: flex;
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px #000;   
+}
+.voucher-item img{
+    width: 30%;
+    height: 80px;
+}
+.voucher-item .info{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+    padding-left: 12px;
+    color: #023047;
+}
+.voucher-item .voucher-btn{
+    width: 50%;
+    background: #990033;
+    color: #023047;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-align: center;
+    padding: 4px 12px;
+}
+.products .container{
+    display: flex;
+    flex-direction: column;
+}
+.most-sell-products .most-sell-products-title{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: capitalize;
+    margin-bottom: 12px; 
+}
+.most-sell-products .most-sell-products-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+.most-sell-products .most-sell-products-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px #000;  
+}
+.most-sell-products-item img{
+    width: 100%;
+}
+.most-sell-products-item .item-title{
+    font-weight: 700;
+    font-size: 21px;
+    text-align: center;
+    padding: 4px 8px;
+    width: 50%;
+}
+/*=====*/
+.new-products{
+    padding: 40px 0;
+}
+.new-products .new-products-title{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: capitalize;
+    margin-bottom: 12px; 
+}
+.new-products .new-products-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+.new-products .new-products-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px #000;  
+}
+.new-products-item img{
+    width: 100%;
+}
+.new-products-item .item-title{
+    font-weight: 700;
+    font-size: 21px;
+    text-align: center;
+    width: 50%;
+    padding: 4px 8px;
+}
+.product-item:hover{
+    cursor: pointer
+}
+.product-item img{
+    height: 120px;
+}
+.footer{
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+}
+td,th{
+    font-weight: 700;
+    padding: 24px;
+    width: 50%;
+    align-content: center;
+    font-size: 16px;
+    text-align: left !important;
+}
+.footer ul{
+    display: flex;
+    width: 100%;
+    align-content: center;
+}
+.footer li{
+    display: flex;
+    justify-content: center;
+
+}
+.footer a{
+    width: 80%;
+}
+.footer img{
+    width: 100%;
+    /*height: 100%;*/
+    border-radius: 16px;
+    boder: 1px solid #000;
+}
+/*==========================================================================================================================*/
+.productTemp-main{
+    display: flex;
+    gap: 4%;
+    flex-direction: row;
+    padding: 48px 0;
+}
+.productTemp-main .img{
+    width: 70%;
+}
+.productTemp-main img{
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    object-position: center;
+}
+.productTemp-right{
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.productTemp-info{
+    flex-direction: column;
+}
+.productTemp-info .productTemp-type{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.productTemp-info .productTemp-title{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.8;
+    text-align: center;
+    letter-spacing: 3px;
+}
+.productTemp-info .productTemp-price{
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.productTemp-info .productTemp-remainingQuantity{
+    font-size: 12px;
+    margin-top: 16px;
+}
+.productTemp-info .productTemp-soldQuantity{
+    font-size: 12px;
+    margin-top: 16px;
+}
+.productTemp-info .quantity{
+    font-size: 12px;
+    margin-top: 16px;
+}
+input[type="number"] {
+    width: 100px; 
+    padding: 5px;  
+    font-size: 16px; 
+}
+.productTemp-actions{
+    width: 100%;
+    letter-spacing: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.productTemp-actions .btn{
+    background: #ccc;
+    text-align: center;
+    width: 70%;
+    font-weight: 700;
+    padding: 16px 32px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    margin-top: 16px;
+}
+.productTemp-actions .productTemp-cart{
+    background: #006699;
+    color: #d4af37;
+}
+.productTemp-actions .productTemp-buy{
+    background: #DD3333;
+    color: #000;
+}
+
+/*==========================*/
+.productTemp-desc{
+    padding: 24px 0;
+
+}
+.productTemp-desc-title{
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding-bottom: 24px;
+}
