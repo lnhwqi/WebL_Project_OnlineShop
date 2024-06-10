@@ -1,8 +1,10 @@
 <%-- 
-    Document   : productTemplate
-    Created on : May 25, 2024, 1:27:42 AM
+    Document   : overviewTemplate
+    Created on : Jun 4, 2024, 1:16:41 AM
     Author     : lengo
 --%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*, java.util.*" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
@@ -15,14 +17,17 @@
         <link rel="stylesheet" href="./assets/css/styles.css"/>
 
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
-        <title>JSP Page</title>
-    </head>
-    <body>
         <%
             String username = (String) session.getAttribute("username");
-            String name ="";
-            String productid = (String) request.getParameter("productid");
+            String main = (String) request.getParameter("overview");
         %>
+        <title><%= main %></title>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
         <header class="header">
             <div class="container">
                 <div class="header-left-block">
@@ -80,41 +85,25 @@
                 </tr>
             </table>
         </div>
-        <div class="productTemp">
+        <main>
+            <h1 style="font-size: 42px; text-transform: uppercase"><%= main %></h1>
             <div class="container">
-                <div class="productTemp-main">
+                <div class="overview-list" ">
                     <%
                         Class.forName("com.mysql.jdbc.Driver");
                         Connection conn = JDBCConnection.getJDBCConnection();
-                        String query = "SELECT name, img, price, typeproduct,remainingquantity, soldquantity FROM products WHERE id = '" + productid + "'";
+                        String query = "SELECT id, name, img FROM products WHERE typeproduct = '" + main + "'";
                         Statement stmt = conn.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
-
+                            
                         while(rs.next()){
-                           name = rs.getString("name");
-                           String img = rs.getString("img");
-                           int price = rs.getInt("price");
-                           int remainingQuantity = rs.getInt("remainingquantity");
-                           int soldQuantity = rs.getInt("soldquantity");
-                           String typeproduct = rs.getString("typeproduct");
-                           int quantity = remainingQuantity - soldQuantity;
+                            int id = rs.getInt("id");
+                            String name = rs.getString("name");
+                            String img = rs.getString("img");
                     %>
-                    <div class="img">
+                    <div class="overview-item" onclick="navigateToProductTemplate('<%= id %>')">
                         <img src="<%= img %>" alt="alt"/>
-                    </div>
-                    <div class="productTemp-right">
-                        <div class="productTemp-info">
-                            <a class="productTemp-type" href="./overviewTemplate.jsp?overview=<%= typeproduct%>"><%= typeproduct %></a>
-                            <h1 class="productTemp-title"><%= name %></h1>
-                            <h2 class="productTemp-price">PRICE: <%= price %>$</h2>
-                            <p class="productTemp-remainingQuantity">REMAINING QUANTITY: <%= remainingQuantity %> Items</p>
-                            <p class="productTemp-soldQuantity">SOLD QUANTITY: <%= soldQuantity %> Items</p>
-                            <p class="quantity">QUANTITY: <input type="number" id="quantity" name="quantity" value="1" min="1" max="<%= quantity %>" step="1"></p>
-                        </div>
-                        <div class="productTemp-actions">
-                            <a class="productTemp-cart btn">Add to cart</a>
-                            <a class="productTemp-buy btn">Buy</a>
-                        </div>
+                        <a class="item-title"><%= name %></a>
                     </div>
 
                     <%
@@ -123,71 +112,28 @@
                         rs.close();
                     %>
                 </div>
-                <div class="productTemp-desc">
-                    <h2 class="productTemp-desc-title">Information:</h2>
-                    <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    </p>
-                </div>
             </div>
-        </div>
-        <footer class="footer">
-            <div class="container">
-                <table>
-                    <tr>
-                        <th>Website Application Development Course</th>
-                    </tr>
-                    <tr>
-                        <th>Topic: Shop Store</th>
-                        <td rowspan="2">
-                            <ul>
-                                <li>
-                                    <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                    </a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Members: 3</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>International University</th>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        </footer>
+
+        </main>
         <script>
             let username = "<%= username %>";
-            document.title = "<%= name %>";
             if (username !== null) {
                 document.getElementById("clientbtn").innerHTML = "Welcome, " + username;
+            }
+
+            function navigateToProductTemplate(productid) {
+                    window.location.href = "productTemplate.jsp?productid=" + productid;
+            }
+
+
+            function navigateToOverviewTemplate(value) {
+                    window.location.href = "overviewTemplate.jsp?overview=" + value;
             }
 
             document.getElementById('menu-btn').addEventListener('click', function () {
                 document.getElementById('menu').style.display =
                         document.getElementById('menu').style.display === 'none' ? 'block' : 'none';
             });
-            
-                        function navigateToOverviewTemplate(value) {
-                    window.location.href = "overviewTemplate.jsp?overview=" + value;
-            }
         </script>
     </body>
 </html>

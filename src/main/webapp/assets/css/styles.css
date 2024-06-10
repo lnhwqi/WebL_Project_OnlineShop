@@ -122,6 +122,7 @@ a:hover{
     justify-content:space-between;
     height: 64px;
     text-transform: capitalize;
+    overflow: visible;
 }
 .header-left-block, .header-center-block, .header-right-block{
     display:flex;
@@ -304,12 +305,12 @@ a:hover{
     text-transform: capitalize;
     margin-bottom: 12px; 
 }
-.most-sell-products .most-sell-products-list{
+.most-sell-products .most-sell-products-list, .overview-list{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 50px;
 }
-.most-sell-products .most-sell-products-item{
+.most-sell-products .most-sell-products-item, .overview-item{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -321,7 +322,7 @@ a:hover{
     border-radius: 4px;
     box-shadow: 0 3px 9px #000;  
 }
-.most-sell-products-item img{
+.most-sell-products-item img, .overview-item img{
     width: 100%;
 }
 .most-sell-products-item .item-title{
@@ -369,10 +370,10 @@ a:hover{
     width: 50%;
     padding: 4px 8px;
 }
-.product-item:hover{
+.product-item:hover, .overview-item:hover{
     cursor: pointer
 }
-.product-item img{
+.product-item img, .overview-item img{
     height: 120px;
 }
 .footer{
