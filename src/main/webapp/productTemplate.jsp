@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
-
+        <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
         <title>JSP Page</title>
     </head>
@@ -21,7 +21,14 @@
         <%
             String username = (String) session.getAttribute("username");
             String name ="";
-            String productid = (String) request.getParameter("productid");
+            String productid ="";
+            String img = "";
+            if(request.getParameter("productid") != null){
+                productid = (String) request.getParameter("productid");
+            }
+            else{
+                productid = (String) request.getAttribute("productid");
+            }
         %>
         <header class="header">
             <div class="container">
@@ -44,10 +51,7 @@
                     <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
                         <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px;">
                             <p style="">List of cart</p>
-                            <ul id="list-of-cart">
-                                <li>first</li>
-                                <li>second</li>
-                                <li>third</li>
+                            <ul id="list-of-cart" style='min-width: 120px;'>
                             </ul>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
@@ -92,7 +96,7 @@
 
                         while(rs.next()){
                            name = rs.getString("name");
-                           String img = rs.getString("img");
+                           img = rs.getString("img");
                            int price = rs.getInt("price");
                            int remainingQuantity = rs.getInt("remainingquantity");
                            int soldQuantity = rs.getInt("soldquantity");
@@ -112,7 +116,7 @@
                             <p class="quantity">QUANTITY: <input type="number" id="quantity" name="quantity" value="1" min="1" max="<%= quantity %>" step="1"></p>
                         </div>
                         <div class="productTemp-actions">
-                            <a class="productTemp-cart btn">Add to cart</a>
+                            <a class="productTemp-cart btn" onclick="addItemToCart('<%= name %>', '<%= img %>', <%= price %>, document.getElementById('quantity').value)">Add to cart</a>
                             <a class="productTemp-buy btn">Buy</a>
                         </div>
                     </div>
@@ -174,6 +178,9 @@
             </div>
         </footer>
         <script>
+            const name = "<%= name %>";
+            const img = "<%= img%>";
+
             let username = "<%= username %>";
             document.title = "<%= name %>";
             if (username !== null) {
@@ -184,10 +191,11 @@
                 document.getElementById('menu').style.display =
                         document.getElementById('menu').style.display === 'none' ? 'block' : 'none';
             });
-            
-                        function navigateToOverviewTemplate(value) {
-                    window.location.href = "overviewTemplate.jsp?overview=" + value;
+
+            function navigateToOverviewTemplate(value) {
+                window.location.href = "overviewTemplate.jsp?overview=" + value;
             }
+
         </script>
     </body>
 </html>

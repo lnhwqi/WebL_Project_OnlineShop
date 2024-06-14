@@ -172,6 +172,14 @@ a:hover{
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
 }
+#complete-table td{
+    border: 1px solid #000;
+    padding: 8px 12px;
+}
+#complete-table td a{
+    color: #000;   
+    font-weight: 700;
+}
 .header .item{
     font-weight: 700;
     color: #023047;
@@ -379,7 +387,7 @@ a:hover{
 .footer{
     background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
 }
-td,th{
+.footer td,th{
     font-weight: 700;
     padding: 24px;
     width: 50%;
