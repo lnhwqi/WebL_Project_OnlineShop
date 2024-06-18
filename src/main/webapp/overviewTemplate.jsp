@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
-
+        <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
         <%
             String username = (String) session.getAttribute("username");
@@ -47,12 +47,9 @@
 
                 <div class="header-right-block">
                     <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px;">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px">
                             <p style="">List of cart</p>
-                            <ul id="list-of-cart">
-                                <li>first</li>
-                                <li>second</li>
-                                <li>third</li>
+                            <ul id="list-of-cart" >
                             </ul>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>

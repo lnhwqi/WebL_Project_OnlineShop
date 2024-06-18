@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./assets/css/styles.css"/>
         <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
-        <title>JSP Page</title>
+        <title></title>
     </head>
     <body>
         <%
@@ -49,10 +49,12 @@
 
                 <div class="header-right-block">
                     <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px;">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px">
                             <p style="">List of cart</p>
-                            <ul id="list-of-cart" style='min-width: 120px;'>
+                            <ul id="list-of-cart" >
                             </ul>
+                            <p id="totalPrice" style="padding: 12px 0"></p>
+                            <div style="width: 100%; display: flex; justify-content: center;"><a href="#!" style="font-weight: 700; background: #ffdddd; padding: 8px 24px" onclick="payment()" id="navpayment">Payment</a></div>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
                     </i>
@@ -117,7 +119,7 @@
                         </div>
                         <div class="productTemp-actions">
                             <a class="productTemp-cart btn" onclick="addItemToCart('<%= name %>', '<%= img %>', <%= price %>, document.getElementById('quantity').value)">Add to cart</a>
-                            <a class="productTemp-buy btn">Buy</a>
+                            <a class="productTemp-buy btn" onclick="directpayment()">Buy</a>
                         </div>
                     </div>
 

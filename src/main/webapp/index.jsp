@@ -16,7 +16,7 @@
 
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
-
+        <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
     </head>
     <body onload="init()">
@@ -24,6 +24,10 @@
             String username="";
             if(session.getAttribute("username") != null){
                 username = (String) session.getAttribute("username");
+            }
+            String clear ="";
+            if(request.getAttribute("clear") != null){
+                clear = (String) request.getAttribute("clear");
             }
         %>
 
@@ -104,11 +108,11 @@
                         <input type="text" class="search-bar" name="search" id="complete-field" onkeyup="doCompletion()">
 
                         <table border="0" cellpadding="5" class="main-table" style="position: absolute; width: 100%">   
-                                <tr>
-                                    <td id="auto-row" colspan="2">
-                                        <table id="complete-table" class="popupBox" style="position: absolute ;width: 100%"></table>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td id="auto-row" colspan="2">
+                                    <table id="complete-table" class="popupBox" style="position: absolute ;width: 100%"></table>
+                                </td>
+                            </tr>
                         </table>
                     </form>
                 </div>
@@ -120,12 +124,9 @@
 
                 <div class="header-right-block">
                     <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px;">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px">
                             <p style="">List of cart</p>
-                            <ul id="list-of-cart">
-                                <li>first</li>
-                                <li>second</li>
-                                <li>third</li>
+                            <ul id="list-of-cart" >
                             </ul>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
@@ -385,6 +386,12 @@
 
 
         <script>
+            let clear = "<%= clear %>";
+            if (clear !== "") {
+                localStorage.clear();
+            }
+            console.log(clear);
+
 
             document.getElementById("loginbtn").addEventListener('click', () => {
                 document.getElementById("log-in-modal").classList.add("visibility");
@@ -434,6 +441,10 @@
                 document.getElementById("signupbtn").style.display = "none";
                 document.getElementById("clientbtn").style.display = "block";
                 document.getElementById("clientbtn").innerHTML = "Welcome, " + username;
+            }
+
+            if (username === "") {
+                localStorage.clear();
             }
 
             const contactBtn = document.getElementById('contact-btn');
