@@ -128,7 +128,8 @@ a:hover{
 
 /*========================================================================================================*/
 .header {
-    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+
+    background: #006699;
     position: sticky;
     top: 0;
     /*width: 100%;*/
@@ -241,14 +242,24 @@ a:hover{
     background: #990033;
     color: #023047;
 }
-.slider{
+#cart-list{
+    display:none;
+}
+#cart-btn:hover #cart-list{
+    display: block
+}
 
+/*===================================================================*/
+.slider{
+    margin-bottom: 40px;
 }
 .slider .container{
     display: flex;
+    height: 480px;
     flex-direction: column;
     align-items: center;
-    background: #006699;
+    justify-content: center;
+    background:linear-gradient(to bottom, #6699ff 0%, #006699 100%);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -267,7 +278,7 @@ a:hover{
 .slider .nav-img-btn:hover{
     cursor: pointer;
 }
-.vouchers{
+/*.vouchers{
     
 }
 .vouchers .title{
@@ -319,8 +330,8 @@ a:hover{
     border: 1px solid #000;
     border-radius: 4px;
     text-align: center;
-    padding: 4px 12px;
-}
+    padding: 4px 12px;*/
+/*}*/
 .products .container{
     display: flex;
     flex-direction: column;
@@ -397,6 +408,44 @@ a:hover{
     width: 50%;
     padding: 4px 8px;
 }
+.pant-products{
+    padding: 40px 0;
+}
+.pant-products .pant-products-title{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: capitalize;
+    margin-bottom: 12px; 
+}
+.pant-products .pant-products-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+.pant-products .pant-products-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to bottom, #6699ff 0%, #006699 100%);
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px #000;  
+}
+.pant-products-item img{
+    width: 100%;
+}
+.pant-products-item .item-title{
+    font-weight: 700;
+    font-size: 21px;
+    text-align: center;
+    width: 50%;
+    padding: 4px 8px;
+}
+
 .product-item:hover, .overview-item:hover{
     cursor: pointer
 }
@@ -446,7 +495,7 @@ a:hover{
 .productTemp-main img{
     width: 100%;
     height: 360px;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
 }
 .productTemp-right{

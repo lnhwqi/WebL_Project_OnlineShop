@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
+        <script src="./main.js"></script>
         <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
         <title></title>
@@ -33,7 +34,8 @@
         <header class="header">
             <div class="container">
                 <div class="header-left-block">
-                    <img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/>
+                    <a href="index.jsp"><img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/></a>
+
                     <i id="menu-btn" class="fa-solid fa-bars bars-btn sign"></i>
 
                     <div class="search" style="position: relative">
@@ -48,8 +50,8 @@
                 </div>
 
                 <div class="header-right-block">
-                    <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px">
+                    <i id="cart-btn" class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px; z-index: 7">
                             <p style="">List of cart</p>
                             <ul id="list-of-cart" >
                             </ul>
@@ -58,29 +60,33 @@
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
                     </i>
-                    <div class="action">
+                    <div class="action" style="position: relative">
                         <a id="clientbtn" class="client btn" href="#!" style="margin-right: 0; display: block"></a>
+                        <div id="client_nav" style="display: none; position: absolute; top: 33.6px; right: 0; background: #d4af37; flex-direction: column; padding: 8px 12px; line-height: 1.8">
+                            <a onclick="logOut()">Logout</a>
+                            <a onclick="clientSite()">Client Site</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
         <div id="menu" style="display: none; position: fixed;  width: 100%; ">
-            <table class="container" style="background: #000; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
+            <table class="container" style="background: #d4af37; line-height: 1.8; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')">shirt</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('t-shirt')">t-shirt</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('polo')">polo</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('toptank')">tank top</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')" style="color: #006699; margin-left: 24px">shirt</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('t-shirt')" style="color: #006699; margin-left: 24px">t-shirt</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('polo')" style="color: #006699; margin-left: 24px">polo</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('toptank')" style="color: #006699; margin-left: 24px">tank top</a></td>
                 </tr>
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('pants')">pants</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shorts')">shorts</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jeans')">jeans</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('pants')" style="color: #006699; margin-left: 24px">pants</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shorts')" style="color: #006699; margin-left: 24px">shorts</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jeans')" style="color: #006699; margin-left: 24px">jeans</a></td>
                     <td style="width: 20%"><a></a></td>
                 </tr>
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('hoodie')">hoodie</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jacket')">jacket</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('hoodie')" style="color: #006699; margin-left: 24px">hoodie</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jacket')" style="color: #006699; margin-left: 24px">jacket</a></td>
                     <td style="width: 20%"><a></a></td>
                     <td style="width: 20%"><a></a></td>
                 </tr>
@@ -197,7 +203,13 @@
             function navigateToOverviewTemplate(value) {
                 window.location.href = "overviewTemplate.jsp?overview=" + value;
             }
-
+            function directpayment(){
+                window.location.href = "Payment";
+            }
+            document.getElementById('clientbtn').addEventListener('click', () => {
+                document.getElementById('client_nav').style.display =
+                        document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
+            });
         </script>
     </body>
 </html>

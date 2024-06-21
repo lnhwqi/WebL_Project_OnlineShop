@@ -14,7 +14,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(name = "Payment", urlPatterns = {"/Payment"})
 public class Payment extends HttpServlet {
@@ -22,9 +26,6 @@ public class Payment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            // Your existing code, if needed
-        }
     }
 
     @Override
@@ -40,7 +41,14 @@ public class Payment extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("checkout".equals(action)) {
-            handleCheckout(request, response, session);
+            try {
+                handleCheckout(request, response, session);
+            } catch (SQLException ex) {
+                Logger.getLogger(Payment.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
+            } catch (NumberFormatException ex) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format");
+            }
         } else {
             handleViewCart(request, response, session);
         }
@@ -51,7 +59,8 @@ public class Payment extends HttpServlet {
         String username = (String) session.getAttribute("username");
 
         String sqlQuery = "SELECT * FROM client WHERE username=?";
-        try (Connection conn = JDBCConnection.getJDBCConnection(); PreparedStatement stmt = conn.prepareStatement(sqlQuery)) {
+        try (Connection conn = JDBCConnection.getJDBCConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlQuery)) {
             stmt.setString(1, username);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -67,26 +76,55 @@ public class Payment extends HttpServlet {
     }
 
     private void handleCheckout(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String username = (String) session.getAttribute("username");
+        String mail = request.getParameter("mail");
+        String address = request.getParameter("address"); // Corrected parameter name
+        String quantity = request.getParameter("quantity"); // Corrected spelling
+        String time = request.getParameter("time");
+        String subtotal = request.getParameter("subtotal");
+        String orderList = request.getParameter("orderlist");
+        String status = "packing goods";
+        int orderid = 0;
 
-        String insertOrderQuery = "INSERT INTO orders (product, username) VALUES (?, ?)";
-//        try (Connection conn = JDBCConnection.getJDBCConnection(); PreparedStatement stmt = conn.prepareStatement(insertOrderQuery)) {
-//            for (Object item : cart) {
-//                // Assuming item is a map or object, adapt according to your actual cart structure
-//                // String product = getProductDetails(item); // Extract product details from item
-//                stmt.setString(1, item.toString()); // Adapt this line according to your cart item structure
-//                stmt.setString(2, username);
-//                stmt.addBatch();
-//            }
-//            stmt.executeBatch();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        String sqlMaxOrderId = "SELECT MAX(orderid) AS max_id FROM `order`"; // Ensure correct table name
 
-        request.setAttribute("clear","clear");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
+        try (Connection conn = JDBCConnection.getJDBCConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlMaxOrderId);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                orderid = rs.getInt("max_id") + 1;
+            }
+
+            String sqlOrder = "INSERT INTO `order`(orderid, username, timeordered, orderstatus) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement orderstmt = conn.prepareStatement(sqlOrder)) {
+                orderstmt.setInt(1, orderid);
+                orderstmt.setString(2, username);
+                orderstmt.setString(3, time);
+                orderstmt.setString(4,status);
+                orderstmt.executeUpdate();
+            }
+
+            String sqlQuery = "INSERT INTO orderlist(orderid, itemName, address, mail, quantity, price) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement orderListstmt = conn.prepareStatement(sqlQuery)) {
+                orderListstmt.setInt(1, orderid);
+                orderListstmt.setString(2, orderList);
+                orderListstmt.setString(3, address);
+                orderListstmt.setString(4, mail);
+                orderListstmt.setInt(5, Integer.parseInt(quantity));
+                orderListstmt.setInt(6, Integer.parseInt(subtotal));
+                orderListstmt.executeUpdate();
+            }
+
+            request.setAttribute("clear", "clear");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override

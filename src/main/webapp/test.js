@@ -49,12 +49,26 @@ function addItemToCart(name, img, price, quantity) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     let totalPrice = quantity * price;
     const newItem = {name, img, price, quantity, totalPrice};
-    cart.push(newItem);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartDisplay();
-}
+    let itemExists = false;
 
-// Function to remove an item from the cart
+    cart.forEach((item) => {
+        console.log(item.name);
+        if (item.name === name) {
+            item.quantity = parseInt(item.quantity) + parseInt(quantity);
+            item.totalPrice = item.quantity * item.price;
+            itemExists = true;
+        }
+    });
+
+    if (!itemExists) {
+        cart.push(newItem);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(localStorage.setItem('cart', JSON.stringify(cart)));
+    updateCartDisplay();
+
+}
 function removeItemFromCart(event) {
     event.preventDefault();
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -63,9 +77,7 @@ function removeItemFromCart(event) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartDisplay();
 
-    if (cart.length === 0) {
-        window.location.href = "index.jsp";
-    }
+    
 }
 
 function payment(event) {
@@ -85,3 +97,4 @@ function directpayment(event) {
 }
 
 document.addEventListener('DOMContentLoaded', updateCartDisplay);
+

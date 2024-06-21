@@ -101,7 +101,7 @@
         <header class="header">
             <div class="container">
                 <div class="header-left-block">
-                    <img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/>
+                    <a href="index.jsp"><img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/></a>
                     <i id="menu-btn" class="fa-solid fa-bars bars-btn sign"></i>
 
                     <form name="autofillform" action="AutoCompleteServlet" class="form search" style="position: relative">
@@ -123,40 +123,44 @@
                 </div>
 
                 <div class="header-right-block">
-                    <i class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px">
+                    <i id="cart-btn" class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px; z-index: 7">
                             <p style="">List of cart</p>
                             <ul id="list-of-cart" >
                             </ul>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
                     </i>
-                    <div class="action">
+                    <div class="action" style="position: relative">
                         <a id="loginbtn" class="login btn" href="#!" >Log In</a>
                         <a id="signupbtn" class="signup btn" href="#!" style="margin-right: 0;">Sign Up</a>
                         <a id="clientbtn" class="client btn" href="#!" style="margin-right: 0; display: none"></a>
+                        <div id="client_nav" style="display: none; position: absolute; top: 33.6px; right: 0; background: #d4af37; flex-direction: column; padding: 8px 12px; line-height: 1.8">
+                            <a onclick="logOut()">Logout</a>
+                            <a onclick="clientSite()">Client Site</a>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </header>
         <div id="menu" style="display: none; position: fixed;  width: 100%; ">
-            <table class="container" style="background: #000; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
+            <table class="container" style="background: #d4af37; line-height: 1.8; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')">shirt</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('t-shirt')">t-shirt</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('polo')">polo</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('toptank')">tank top</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')" style="color: #006699; margin-left: 24px">shirt</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('t-shirt')" style="color: #006699; margin-left: 24px">t-shirt</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('polo')" style="color: #006699; margin-left: 24px">polo</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('toptank')" style="color: #006699; margin-left: 24px">tank top</a></td>
                 </tr>
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('pants')">pants</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shorts')">shorts</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jeans')">jeans</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('pants')" style="color: #006699; margin-left: 24px">pants</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shorts')" style="color: #006699; margin-left: 24px">shorts</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jeans')" style="color: #006699; margin-left: 24px">jeans</a></td>
                     <td style="width: 20%"><a></a></td>
                 </tr>
                 <tr>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('hoodie')">hoodie</a></td>
-                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jacket')">jacket</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('hoodie')" style="color: #006699; margin-left: 24px">hoodie</a></td>
+                    <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('jacket')" style="color: #006699; margin-left: 24px">jacket</a></td>
                     <td style="width: 20%"><a></a></td>
                     <td style="width: 20%"><a></a></td>
                 </tr>
@@ -166,44 +170,44 @@
 
         <div class="slider">
             <div class="container">
-                <img src="https://images.unsplash.com/photo-1715845608783-e9b51eafc3f9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
+                <img id="dynamicImage" src="https://media.licdn.com/dms/image/C511BAQGYZheLJS2Peg/company-background_10000/0/1584494266859/international_university_vnu_hcmc_cover?e=2147483647&v=beta&t=cYnj_nHuXPoY39j0CF0E4lIwpuXU784XC3bAAodBuZM" alt="IMAGE_PROMOTION"/>
                 <!--                <img style="display: none" src="https://images.unsplash.com/photo-1716277521822-3ffadf3f69a3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
                                 <img style="display: none" src="https://images.unsplash.com/photo-1716277521231-c2fce136e880?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>-->
-                <div class="navigate-img">
-                    <i class="fa-solid fa-circle nav-img-btn"></i>
-                    <i class="fa-solid fa-circle nav-img-btn"></i>
-                    <i class="fa-solid fa-circle nav-img-btn"></i>
-                </div>
+                <!--                <div class="navigate-img">
+                                    <i class="fa-solid fa-circle nav-img-btn"></i>
+                                    <i class="fa-solid fa-circle nav-img-btn"></i>
+                                    <i class="fa-solid fa-circle nav-img-btn"></i>
+                                </div>-->
             </div>
         </div>
-        <div class="vouchers">
-            <div class="container">
-                <div class="title">Voucher</div>
-                <div class="voucher-list">
-                    <div class="voucher-item">
-                        <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
-                        <div class="info">
-                            <p class="voucher-title">Free Delivery</p>
-                            <a class="voucher-btn" href="#!">Get</a>
-                        </div>      
+        <!--        <div class="vouchers">
+                    <div class="container">
+                        <div class="title">Voucher</div>
+                        <div class="voucher-list">
+                            <div class="voucher-item">
+                                <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
+                                <div class="info">
+                                    <p class="voucher-title">Free Delivery</p>
+                                    <a class="voucher-btn" href="#!">Get</a>
+                                </div>      
+                            </div>
+                            <div class="voucher-item">
+                                <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
+                                <div class="info">
+                                    <p class="voucher-title">Sale up to 10% off</p>
+                                    <a class="voucher-btn" href="#!">Get</a>
+                                </div>      
+                            </div>
+                            <div class="voucher-item">
+                                <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
+                                <div class="info">
+                                    <p class="voucher-title">Sale up to 7% off</p>
+                                    <a class="voucher-btn" href="#!">Get</a>
+                                </div>      
+                            </div>
+                        </div>
                     </div>
-                    <div class="voucher-item">
-                        <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
-                        <div class="info">
-                            <p class="voucher-title">Sale up to 10% off</p>
-                            <a class="voucher-btn" href="#!">Get</a>
-                        </div>      
-                    </div>
-                    <div class="voucher-item">
-                        <img src="https://images.unsplash.com/photo-1716277521543-7ff44dc651a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
-                        <div class="info">
-                            <p class="voucher-title">Sale up to 7% off</p>
-                            <a class="voucher-btn" href="#!">Get</a>
-                        </div>      
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div>-->
         <div class="products">
             <div class="container">
                 <div class="most-sell-products">
@@ -231,46 +235,6 @@
                             stmt.close();
                             rs.close();
                         %>
-                        <!--                        <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="most-sell-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>-->
                     </div>
                 </div>
                 <div class="new-products">
@@ -296,50 +260,38 @@
                             }
                             stmt2.close();
                             rs2.close();
+                        %>
+                    </div>
+                </div>
+                <div class="pant-products ">
+                    <div class="pant-products-title">Pants</div>
+                    <div class="pant-products-list" style="position: relative">
+                        <%
+   
+                            String query3 = "SELECT id, name, img FROM products  where typeproduct = 'pants' ORDER BY date DESC LIMIT 10";
+                            Statement stmt3 = conn.createStatement();
+                            ResultSet rs3 = stmt3.executeQuery(query3);
+                            
+                            while(rs3.next()){
+                                int id3 = rs3.getInt("id");
+                                String name3 = rs3.getString("name");
+                                String img3 = rs3.getString("img");
+                        %>
+                        <div class="pant-products-item product-item" onclick="navigateToProductTemplate('<%= id3 %>')">
+                            <img src="<%= img3 %>" alt="alt"/>
+                            <a class="item-title"><%= name3 %></a>
+                        </div>
+
+                        <%
+                            }
+                            stmt3.close();
+                            rs3.close();
                             conn.close();
                         %>
+                        <a href="#!" onclick="navigateToOverviewTemplate('pants')" style="position: absolute; right: 0; bottom: -20px;color: #d4af37; font-size: 20px; font-weight: 700; text-decoration: underline ">More Items</a>
 
-                        <!--                        <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>
-                                                <div class="new-products-item product-item">
-                                                    <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
-                                                    <a class="item-title">Item</a>
-                                                </div>-->
                     </div>
+
                 </div>
             </div>
         </div>
@@ -440,6 +392,7 @@
                 document.getElementById("loginbtn").style.display = "none";
                 document.getElementById("signupbtn").style.display = "none";
                 document.getElementById("clientbtn").style.display = "block";
+
                 document.getElementById("clientbtn").innerHTML = "Welcome, " + username;
             }
 
@@ -494,7 +447,38 @@
                 }
             }
 
+
+
+
+            function fetchAndRotateImages() {
+                fetch('data.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            rotateImages(data.image);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching JSON:', error);
+                        });
+            }
+            function rotateImages(images) {
+                const imgElement = document.getElementById('dynamicImage');
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    imgElement.src = images[currentIndex].url;
+                    currentIndex = (currentIndex + 1) % images.length;
+                }, 3000); // Rotate every 1000 milliseconds (1 second)
+            }
+
+
+            window.onload = fetchAndRotateImages;
+            document.getElementById('clientbtn').addEventListener('click', () => {
+                document.getElementById('client_nav').style.display =
+                        document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
+            });
         </script>
         <script src="./main.js"></script>
+        <script src="./test.js"></script>
+
     </body>
 </html>

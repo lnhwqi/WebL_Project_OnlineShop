@@ -10,18 +10,26 @@ var completeField;
 var completeTable;
 var autoRow;
 
+function clientSite() {
+    window.location.href = 'clientSite.jsp';
+}
+function logOut() {
+    window.location.href = 'Logout';
+}
+
+//document.getElementById('clientbtn').addEventListener('click', () => {
+//    document.getElementById('client_nav').style.display =
+//            document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
+//});
+
 function init() {
     completeField = document.getElementById("complete-field");
     completeTable = document.getElementById("complete-table");
     autoRow = document.getElementById("auto-row");
     completeTable.style.top = getElementY(autoRow) + "px";
-
-
-
 }
 
 function doCompletion() {
-
     var url = "AutoCompleteServlet?action=complete&id=" + encodeURIComponent(completeField.value);
     req = initRequest();
     req.open("GET", url, true);
@@ -130,6 +138,4 @@ function parseMessages(responseXML) {
             }
         }
     }
-
-
 }
