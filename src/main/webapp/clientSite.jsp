@@ -14,11 +14,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>title</title>
         <style>
+            body{
+                color: #18206f;
+                background: #d4af37;
+            }
             table{
                 width:100%;
             }
             table, th, td {
                 border: 1px solid #000;
+                border-collapse: collapse;
+            }
+            .back{
+                color: #000;
+                background: #ccc;
+                margin: 12px;
+                padding: 12px;
             }
         </style>
     </head>
@@ -28,8 +39,8 @@
             String username = (String) session.getAttribute("username");
             
         %>
-        <div style="margin: 24px">
-            <a href="./index.jsp" class="back" style="color: #000">Back</a>
+        <div style="margin: 24px; width: 240px">
+            <a href="./index.jsp" class="back" style="display:block ;color: #000; width: 100%; border: 1px solid #000; border-radius: 4px; text-align: center">Back</a>
         </div>
         <h1>Hello <%= username %>!</h1>
         <h2>Your ordered list!</h2>

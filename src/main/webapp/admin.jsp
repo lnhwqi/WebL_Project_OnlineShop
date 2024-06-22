@@ -14,11 +14,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>title</title>
         <style>
+            body{
+                color: #18206f;
+                background: #d4af37;
+            }
             table{
                 width:100%;
             }
             table, th, td {
                 border: 1px solid #000;
+                border-collapse: collapse;
+            }
+            .product-btn{
+                color: #000;
+                background: #ccc;
+                margin: 12px;
+                padding: 12px;
             }
         </style>
     </head>
@@ -26,8 +37,13 @@
         <%
             String username = (String) session.getAttribute("username");
         %>
+
         <h1>Hello <%= username %>!</h1>
-        <h2>Ordered List!</h2>
+        <div style="margin: 24px; width: 240px">
+            <a href="./products.jsp" class="product-btn" style="display:block ;color: #000; width: 100%; border: 1px solid #000; border-radius: 4px; text-align: center; text-decoration: none">Edit Our Products</a>
+            <a href="#!" onclick="logOut()" class="product-btn" style="display:block;background: #990033 ;color: #fff; width: 100%; border: 1px solid #000; border-radius: 4px; text-align: center; text-decoration: none">Logout</a>
+        </div>
+        <h2>Client Ordered List!</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -59,13 +75,13 @@
                     revenue += price;
             %>
             <tr>
-                <td><%= id %></td>
-                <td><%= time %></td>
-                <td><%= clientusername %></td>
-                <td><%= itemName %></td>
-                <td><%= quantity %></td>
-                <td><%= price %></td>
-                <td><%= status %>
+                <td style="padding-left: 12px"><%= id %></td>
+                <td style="padding-left: 12px"><%= time %></td>
+                <td style="padding-left: 12px"><%= clientusername %></td>
+                <td style="padding-left: 12px"><%= itemName %></td>
+                <td style="padding-left: 12px"><%= quantity %></td>
+                <td style="padding-left: 12px"><%= price %></td>
+                <td style="text-align: center"><%= status %>
 
                     <% if ("packing goods".equals(status)) { %>
                     <form method="post" action="UpdateOrderStatusServlet">
@@ -86,6 +102,9 @@
         <h4>Total Revenue: $<%= revenue %></h4>
         <script>
             document.title = "<%= username %>";
+            function logOut() {
+                window.location.href = 'Logout';
+            }
         </script>
     </body>
 </html>

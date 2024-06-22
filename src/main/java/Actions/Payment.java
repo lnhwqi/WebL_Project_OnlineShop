@@ -59,12 +59,11 @@ public class Payment extends HttpServlet {
         String username = (String) session.getAttribute("username");
 
         String sqlQuery = "SELECT * FROM client WHERE username=?";
-        try (Connection conn = JDBCConnection.getJDBCConnection();
-             PreparedStatement stmt = conn.prepareStatement(sqlQuery)) {
+        try (Connection conn = JDBCConnection.getJDBCConnection(); PreparedStatement stmt = conn.prepareStatement(sqlQuery)) {
             stmt.setString(1, username);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    request.setAttribute("phone", rs.getString("phone"));
+                    session.setAttribute("phone",rs.getString("phone"));
                 }
             }
         } catch (SQLException e) {
@@ -79,19 +78,17 @@ public class Payment extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String username = (String) session.getAttribute("username");
         String mail = request.getParameter("mail");
-        String address = request.getParameter("address"); // Corrected parameter name
-        String quantity = request.getParameter("quantity"); // Corrected spelling
+        String address = request.getParameter("address");
+        String quantity = request.getParameter("quantity");
         String time = request.getParameter("time");
         String subtotal = request.getParameter("subtotal");
         String orderList = request.getParameter("orderlist");
         String status = "packing goods";
         int orderid = 0;
 
-        String sqlMaxOrderId = "SELECT MAX(orderid) AS max_id FROM `order`"; // Ensure correct table name
+        String sqlMaxOrderId = "SELECT MAX(orderid) AS max_id FROM `order`";
 
-        try (Connection conn = JDBCConnection.getJDBCConnection();
-             PreparedStatement stmt = conn.prepareStatement(sqlMaxOrderId);
-             ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = JDBCConnection.getJDBCConnection(); PreparedStatement stmt = conn.prepareStatement(sqlMaxOrderId); ResultSet rs = stmt.executeQuery()) {
 
             if (rs.next()) {
                 orderid = rs.getInt("max_id") + 1;
@@ -102,7 +99,7 @@ public class Payment extends HttpServlet {
                 orderstmt.setInt(1, orderid);
                 orderstmt.setString(2, username);
                 orderstmt.setString(3, time);
-                orderstmt.setString(4,status);
+                orderstmt.setString(4, status);
                 orderstmt.executeUpdate();
             }
 
@@ -117,9 +114,34 @@ public class Payment extends HttpServlet {
                 orderListstmt.executeUpdate();
             }
 
-            request.setAttribute("clear", "clear");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            // Parse orderList and update product quantities
+            List<String> items = Arrays.asList(orderList.split(";"));
+            for (String item : items) {
+                String[] itemDetails = item.split(":");
+                if (itemDetails.length == 2) {
+                    String productName = itemDetails[0];
+                    int productQuantity = Integer.parseInt(itemDetails[1]);
+
+                    String updateProductQuantity = "UPDATE products SET remainingquantity = remainingquantity - ?, soldquantity = soldquantity + ? WHERE name = ? AND remainingquantity >= ?";
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateProductQuantity)) {
+                        updateStmt.setInt(1, productQuantity);
+                        updateStmt.setInt(2, productQuantity);
+                        updateStmt.setString(3, productName);
+                        updateStmt.setInt(4, productQuantity);
+                        int rowsUpdated = updateStmt.executeUpdate();
+
+                        if (rowsUpdated == 0) {
+                            request.setAttribute("outStock", productName);
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("payment.jsp");
+                            dispatcher.forward(request, response);
+                        } else {
+                            request.setAttribute("clear", "clear");
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                            dispatcher.forward(request, response);
+                        }
+                    }
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
