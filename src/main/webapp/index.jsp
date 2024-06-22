@@ -60,6 +60,9 @@
                         <td><input type="password" id="passwordLG" name="passwordLG" style="width: 160px" required></td>
                     </tr>
                     <tr>              
+                        <td colspan="2" ><a href="#!"  onclick="resetPassword()" style="color: #18206f">Forget Password</a></td>
+                    </tr>
+                    <tr>              
                         <td colspan="2" ><input type="submit" style="width: 100%" value="Log In"></td>
                     </tr>
                 </table>
@@ -479,6 +482,10 @@
                 document.getElementById('client_nav').style.display =
                         document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
             });
+
+            function resetPassword() {
+                window.location.href = 'Resetpassword';
+            }
         </script>
         <script src="./js/addToCart.js"></script>
 

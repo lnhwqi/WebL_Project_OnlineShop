@@ -31,7 +31,7 @@
             table{
                 padding: 12px 24px;
                 border: 1px solid #000;
-                box-shadow: 0 3px 9px #000; 
+                box-shadow: 0 3px 9px #000;
                 border-radius: 4px;
             }
             h2{
@@ -70,7 +70,7 @@
             int state = (int) request.getAttribute("state");
             String username = (String) request.getAttribute("username");
         %>
-        
+
         <h2 class="log-in-title">Checking your Username and Password, Again</h2>           
         <form method="post" action="Login">
             <table style="width: 420px">
@@ -86,27 +86,35 @@
                     if (message != null && !message.isEmpty()) {
                     
                 %>
-                    <tr><td colspan="2" style="text-align: center">
-                    <p style="color: #18206f;"><%= message %>
-                    <%
-                        if(state == 0){
-                    %>
-                        <br><a href="Signup.jsp"  style="text-decoration: none; color: #DD3333; padding: 8px 12px">Create new account</a>
-                    <%
-                        }
-                    %>
-                    
-                    </p>
+                <tr><td colspan="2" style="text-align: center">
+                        <p style="color: #18206f;"><%= message %>
+                            <%
+                                if(state == 0){
+                            %>
+                            <br><a href="Signup.jsp"  style="text-decoration: none; color: #DD3333; padding: 8px 12px">Create new account</a>
+                            <%
+                                }
+                            %>
+
+                        </p>
                     </td></tr>
-                    
+
                 <%                    
                     }
                 %>
+                <tr>              
+                    <td colspan="2" ><a href="#!"  onclick="resetPassword()">Forget Password</a></td>
+                </tr>
                 <tr>              
                     <td colspan="2" ><input type="submit" style="width: 100%" value="Log In" name="submit"></td>
                 </tr>
             </table>
         </form>  
+        <script>
+            function resetPassword() {
+                window.location.href = 'Resetpassword';
+            }
+        </script>
     </body>
 </html>
 
