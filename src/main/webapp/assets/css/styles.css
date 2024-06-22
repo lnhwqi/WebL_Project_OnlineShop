@@ -158,7 +158,7 @@ a:hover{
     gap: 24px;
 }
 .header .logo{
-    width: 120px;
+    width: 48px;
     height: 48px;
     border-radius: 8px;
     
@@ -365,10 +365,10 @@ a:hover{
 }
 .most-sell-products-item .item-title{
     font-weight: 700;
-    font-size: 21px;
+    font-size: 16px;
     text-align: center;
     padding: 4px 8px;
-    width: 50%;
+    /*width: 50%;*/
 }
 /*=====*/
 .new-products{
@@ -403,9 +403,9 @@ a:hover{
 }
 .new-products-item .item-title{
     font-weight: 700;
-    font-size: 21px;
+    font-size: 16px;
     text-align: center;
-    width: 50%;
+    /*width: 50%;*/
     padding: 4px 8px;
 }
 .pant-products{
@@ -440,9 +440,9 @@ a:hover{
 }
 .pant-products-item .item-title{
     font-weight: 700;
-    font-size: 21px;
+    font-size: 16px;
     text-align: center;
-    width: 50%;
+    /*width: 50%;*/
     padding: 4px 8px;
 }
 

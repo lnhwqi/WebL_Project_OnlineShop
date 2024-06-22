@@ -104,7 +104,7 @@
                 </table>
             </form>
         </main>
-        <script src="./payment.js"></script>
+        <script src="./js/payment.js"></script>
         <script>
             const username = "<%= username %>";
             document.title = "Payment: " + "<%= username %>";

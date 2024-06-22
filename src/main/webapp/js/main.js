@@ -4,11 +4,11 @@
  */
 
 
-var req;
-var isIE;
-var completeField;
-var completeTable;
-var autoRow;
+let req;
+let isIE;
+let completeField = document.getElementById("complete-field");;
+let completeTable = document.getElementById("complete-table");
+let autoRow = document.getElementById("auto-row");
 
 function clientSite() {
     window.location.href = 'clientSite.jsp';
@@ -17,17 +17,11 @@ function logOut() {
     window.location.href = 'Logout';
 }
 
-//document.getElementById('clientbtn').addEventListener('click', () => {
-//    document.getElementById('client_nav').style.display =
-//            document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
-//});
 
 function init() {
-    completeField = document.getElementById("complete-field");
-    completeTable = document.getElementById("complete-table");
-    autoRow = document.getElementById("auto-row");
     completeTable.style.top = getElementY(autoRow) + "px";
 }
+    console.log(completeField);
 
 function doCompletion() {
     var url = "AutoCompleteServlet?action=complete&id=" + encodeURIComponent(completeField.value);
@@ -71,6 +65,7 @@ function appendComposer(name, id) {
     } else {
         completeTable.style.display = 'table';
         row = document.createElement("tr");
+        row.style.background = "#ccc";
         cell = document.createElement("td");
         row.appendChild(cell);
         completeTable.appendChild(row);

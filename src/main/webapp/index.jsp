@@ -8,6 +8,8 @@
 <%@ page import="java.sql.*, java.util.*" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page import="JDBC.JDBCConnection" %>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +18,6 @@
 
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
-        <script src="./test.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
     </head>
     <body onload="init()">
@@ -101,7 +102,7 @@
         <header class="header">
             <div class="container">
                 <div class="header-left-block">
-                    <a href="index.jsp"><img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/></a>
+                    <a href="index.jsp"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG9KX3fSb_J5ao_jR_q13xoQgeRiQXymUoDQ&s" alt="logo"/></a>
                     <i id="menu-btn" class="fa-solid fa-bars bars-btn sign"></i>
 
                     <form name="autofillform" action="AutoCompleteServlet" class="form search" style="position: relative">
@@ -124,10 +125,12 @@
 
                 <div class="header-right-block">
                     <i id="cart-btn" class="fa-solid fa-cart-shopping cart-btn sign" style="position: relative; ">
-                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px; z-index: 7">
+                        <div id="cart-list" style="background: #ccc; position: absolute; font-size: 12px;border: 1px solid #000; border-radius: 4px; padding: 6px 12px; overflow-y: scroll; width: 320px; max-height: 420px;  z-index: 7">
                             <p style="">List of cart</p>
                             <ul id="list-of-cart" >
                             </ul>
+                            <p id="totalPrice" style="padding: 12px 0"></p>
+                            <div style="width: 100%; display: flex; justify-content: center;"><a href="#!" style="font-weight: 700; background: #ffdddd; padding: 8px 24px" onclick="payment()" id="navpayment">Payment</a></div>
                         </div>
                         <div id="number-item-cart" style="position: absolute; top: -8px;left: -8px; font-size: 12px; padding: 4px; background-color:red; border-radius: 16px">0</div>
                     </i>
@@ -144,7 +147,7 @@
 
             </div>
         </header>
-        <div id="menu" style="display: none; position: fixed;  width: 100%; ">
+        <div id="menu" style="display: none; position: fixed;  width: 100%; z-index: 2">
             <table class="container" style="background: #d4af37; line-height: 1.8; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                 <tr>
                     <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')" style="color: #006699; margin-left: 24px">shirt</a></td>
@@ -170,7 +173,7 @@
 
         <div class="slider">
             <div class="container">
-                <img id="dynamicImage" src="https://media.licdn.com/dms/image/C511BAQGYZheLJS2Peg/company-background_10000/0/1584494266859/international_university_vnu_hcmc_cover?e=2147483647&v=beta&t=cYnj_nHuXPoY39j0CF0E4lIwpuXU784XC3bAAodBuZM" alt="IMAGE_PROMOTION"/>
+                <img id="dynamicImage" src="https://media.licdn.com/dms/image/C511BAQGYZheLJS2Peg/company-background_10000/0/1584494266859/international_university_vnu_hcmc_cover?e=2147483647&v=beta&t=cYnj_nHuXPoY39j0CF0E4lIwpuXU784XC3bAAodBuZM" alt="IMAGE_PROMOTION" style="z-index: 0"/>
                 <!--                <img style="display: none" src="https://images.unsplash.com/photo-1716277521822-3ffadf3f69a3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>
                                 <img style="display: none" src="https://images.unsplash.com/photo-1716277521231-c2fce136e880?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D" alt="alt"/>-->
                 <!--                <div class="navigate-img">
@@ -307,17 +310,17 @@
                             <ul>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png" alt="alt"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png" alt="alt"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman2-512.png" alt="alt"/>
                                     </a>
                                 </li>
                             </ul>
@@ -477,8 +480,8 @@
                         document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
             });
         </script>
-        <script src="./main.js"></script>
-        <script src="./test.js"></script>
+        <script src="./js/addToCart.js"></script>
 
+        <script src="./js/main.js"></script>
     </body>
 </html>

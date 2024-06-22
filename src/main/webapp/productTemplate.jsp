@@ -13,8 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./assets/css/reset.css"/>
         <link rel="stylesheet" href="./assets/css/styles.css"/>
-        <script src="./main.js"></script>
-        <script src="./test.js"></script>
+        <script src="./js/addToCart.js"></script>
         <script src="https://kit.fontawesome.com/298cd1d7bc.js" crossorigin="anonymous"></script>
         <title></title>
     </head>
@@ -34,14 +33,22 @@
         <header class="header">
             <div class="container">
                 <div class="header-left-block">
-                    <a href="index.jsp"><img class="logo" src="https://images.unsplash.com/photo-1715698576283-d6ee92b7157a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo"/></a>
+                    <a href="index.jsp"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG9KX3fSb_J5ao_jR_q13xoQgeRiQXymUoDQ&s" alt="logo"/></a>
+
 
                     <i id="menu-btn" class="fa-solid fa-bars bars-btn sign"></i>
 
-                    <div class="search" style="position: relative">
-                        <input type="text" class="search-bar" name="search">
-                        <i style="position: absolute; top:0; right:0; z-index: 2" class="fa-solid fa-magnifying-glass search-btn sign"></i>
-                    </div>
+                    <form name="autofillform" action="AutoCompleteServlet" class="form search" style="position: relative">
+                        <input type="text" class="search-bar" name="search" id="complete-field" onkeyup="doCompletion()">
+
+                        <table border="0" cellpadding="5" class="main-table" style="position: absolute; width: 100%">   
+                            <tr>
+                                <td id="auto-row" colspan="2">
+                                    <table id="complete-table" class="popupBox" style="position: absolute ;width: 100%"></table>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
                 <div class="header-center-block">
                     <a href="#!" class="about-us item">About Us</a>
@@ -70,7 +77,7 @@
                 </div>
             </div>
         </header>
-        <div id="menu" style="display: none; position: fixed;  width: 100%; ">
+        <div id="menu" style="display: none; position: fixed;  width: 100%; z-index: 2">
             <table class="container" style="background: #d4af37; line-height: 1.8; color: #000; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                 <tr>
                     <td style="width: 20%"><a href="#!" onclick="navigateToOverviewTemplate('shirt')" style="color: #006699; margin-left: 24px">shirt</a></td>
@@ -158,17 +165,17 @@
                             <ul>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png" alt="alt"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png" alt="alt"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#!">
-                                        <img src="https://images.unsplash.com/photo-1704688618021-557e23d44850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" alt="alt"/>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman2-512.png" alt="alt"/>
                                     </a>
                                 </li>
                             </ul>
@@ -203,7 +210,7 @@
             function navigateToOverviewTemplate(value) {
                 window.location.href = "overviewTemplate.jsp?overview=" + value;
             }
-            function directpayment(){
+            function directpayment() {
                 window.location.href = "Payment";
             }
             document.getElementById('clientbtn').addEventListener('click', () => {
@@ -211,5 +218,7 @@
                         document.getElementById('client_nav').style.display === 'none' ? 'flex' : 'none';
             });
         </script>
+        <script src="./js/main.js"></script>
+
     </body>
 </html>
